@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,15 +10,19 @@ namespace popcorn_game
 {
     public class Ball
     {
-        public enum Direction { UP, DOWN, LEFT, RIGHT}
         public Point Center { get; set; }
         public static int RADIUS = 4;
-        public Direction direction { get; set; }
+        public int speed_X { get; set; }
+        public int speed_Y { get; set; }
+        public SoundPlayer paddle_sound = new SoundPlayer(Properties.Resources.effect_paddle);
+        public SoundPlayer brick_sound = new SoundPlayer(Properties.Resources.effect_brick);
+        public SoundPlayer border_sound = new SoundPlayer(Properties.Resources.effect_border);
+
 
         public Ball()
         {
             Center = new Point(300, 520);
-            direction = Direction.DOWN;
+            speed_X = speed_Y = 5;
         }
         public void Draw(Graphics g)
         {
@@ -27,38 +32,32 @@ namespace popcorn_game
         }
         public void Move()
         {
-            if( direction == Direction.DOWN)
-            {
-                Center = new Point(Center.X, Center.Y + 10);
-            }
-            if( direction == Direction.UP)
-            {
-                Center = new Point(Center.X, Center.Y - 10);
-            }
-            if (direction == Direction.LEFT)
-            {
-                Center = new Point(Center.X + 10, Center.Y - 10);
-            }
-            if (direction == Direction.RIGHT)
-            {
-                Center = new Point(Center.X - 10, Center.Y - 10);
-            }
+            Center = new Point(Center.X + speed_X, Center.Y + speed_Y);
         }
         public void changeDirection(Point paddle, int width, int border_width, int border_height)
         {
             // ball hits paddle
             if (Center.X > paddle.X && Center.X < paddle.X + width && paddle.Y - 10 == Center.Y)
             {
-                int difference = paddle.X + width - Center.X;
-                if ( difference >= 0  && difference < 45 ) direction = Direction.LEFT;
-                if ( difference >= 45 && difference <= 55) direction = Direction.UP;
-                if ( difference > 55 && difference < 100) direction = Direction.RIGHT;
-
+                paddle_sound.Play();
+                if ((Center.X < paddle.X && speed_X > 0) || (Center.X > paddle.X + Paddle.WIDTH && speed_X < 0)) speed_X *= -1;
+                speed_Y *= -1;
             }
             // ball hits border
-            if(Center.X > 10 && Center.X < border_width &&  10 == Center.Y) direction = Direction.DOWN;
-           
-
+            if (Center.X <= 15 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
+            if (Center.Y <= 15) { speed_Y *= -1; border_sound.Play(); }
+        }
+        public void brickCollision(List<Brick> bricks)
+        {
+            foreach(Brick b in bricks)
+            {
+                if (Center.X <= b.point.X + Brick.WIDTH && Center.X >= b.point.X && Center.Y <= b.point.Y + Brick.HEIGHT && Center.Y >= b.point.Y)
+                {
+                    brick_sound.Play();
+                    b.isDead = true;
+                    speed_Y *= -1;
+                }
+            }
         }
     }
 }

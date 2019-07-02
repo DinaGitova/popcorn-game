@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace popcorn_game
         int border_Y = 10;
         Paddle paddle;
         Ball ball;
+
 
         public Scene()
         {
@@ -64,6 +66,11 @@ namespace popcorn_game
         public void Move()
         {
             ball.changeDirection(paddle.point, Paddle.WIDTH, border_width, border_height);
+            ball.brickCollision(bricks);
+            for(int i = 0; i < bricks.Count; i++)
+            {
+                if (bricks[i].isDead) { bricks.RemoveAt(i); }
+            }
             ball.Move();
         }
     }

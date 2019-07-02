@@ -13,11 +13,13 @@ namespace popcorn_game
         public static int WIDTH = 60;
         public static int HEIGHT = 20;
         public Color color { get; set; }
+        public bool isDead { get; set; }
         
         public Brick(int x, int y, Color color)
         {
             point = new Point(x, y);
             this.color = color;
+            isDead = false;
         }
         public void Draw(Graphics g)
         {
