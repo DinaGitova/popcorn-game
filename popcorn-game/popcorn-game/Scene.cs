@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,7 +13,7 @@ namespace popcorn_game
     public class Scene
     {
         //bricks properties
-        List<Brick> bricks;
+        public List<Brick> bricks;
         int width = 60; int height = 20;
         Point point = new Point(20, 60);
         //border properties
@@ -21,7 +22,7 @@ namespace popcorn_game
         int border_X = 10;
         int border_Y = 10;
         int counter = 0;
-        List<Letter> letters;
+        public List<Letter> letters;
         Paddle paddle;
         Ball ball;
         public int points { get; set; }
@@ -55,8 +56,39 @@ namespace popcorn_game
                 }
                 point = new Point(20 * (i + 2), 60);
             }
-        }
 
+        }
+        public void level2()
+        {
+            ball = new Ball();
+            paddle = new Paddle();
+            letters.Clear();
+            bullets.Clear();
+            int milliseconds = 2000;
+            Thread.Sleep(milliseconds);
+            point = new Point(20, 40);
+            int k = 2; int s = 1;
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (i == 4)
+                    {
+                        if (j % 2 == 0) bricks.Add(new Brick(point.X, point.Y + j * height, Color.Magenta));
+                        point = new Point(point.X, point.Y + 10);
+                    }
+                    else
+                    {
+                        if (j % 2 == 0) bricks.Add(new Brick(point.X, point.Y + j * height, Color.Magenta));
+                        else bricks.Add(new Brick(20 + 60 * s, point.Y + j * height, Color.Aquamarine));
+                        point = new Point(point.X, point.Y + 10);
+                    }
+                }
+                point = new Point(20 + k * width, 40);
+                k += 2; s += 2;
+            }
+            
+        }
         public void Draw(Graphics g)
         {
             // drawing the border
@@ -94,6 +126,7 @@ namespace popcorn_game
             foreach (Bullet b in bullets) b.brickCollision(bricks);        
             removeBricks();
             removeBullets();
+            deadBall();
             ball.Move();
             foreach (Letter l in letters)
             {
@@ -106,6 +139,25 @@ namespace popcorn_game
                b.Move();
             }
             if (bricks.Count == 0) GameOver = true; 
+        }
+
+        public void deadBall()
+        {
+            if (ball.isDead)
+            {
+
+                if (lives > 1)
+                {
+                    lives--;
+                    ball = new Ball();
+                    removeGifts();
+                    letters.Clear();
+                    bullets.Clear();
+                    paddle = new Paddle();
+                }
+
+                else GameOver = true;
+            }
         }
         public void removeBricks()
         {
@@ -133,6 +185,7 @@ namespace popcorn_game
             {
                 if (letters[i].isHit)
                 {
+                    points += 20;
                     if (letters[i].letter == 'A') slowerBall();
                     else if (letters[i].letter == 'B') { removeGifts(); paddle.Color = Color.DarkBlue; canShoot = true; }
                     else if (letters[i].letter == 'C') fasterBall();
@@ -149,7 +202,8 @@ namespace popcorn_game
         public void loseLife()
         {
             removeGifts();
-            lives--;
+            if (lives > 1) lives--;
+            else GameOver = true;
         }
 
         public void addLife()
@@ -203,8 +257,9 @@ namespace popcorn_game
             canShoot = false;
             if (ball.speed_X < 0) ball.speed_X = -7;
             else if (ball.speed_X > 0) ball.speed_X = 7;
-            if (ball.speed_Y < 0) ball.speed_Y = 7;
+            if (ball.speed_Y < 0) ball.speed_Y = -7;
             else if (ball.speed_Y > 0) ball.speed_Y = 7;
         }
+
     }
 }

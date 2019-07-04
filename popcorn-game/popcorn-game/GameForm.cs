@@ -15,6 +15,7 @@ namespace popcorn_game
         Scene scene;
         HelpMenuForm help;
         public static bool inGame = false;
+        int level = 1;
         public GameForm()
         {
             InitializeComponent();
@@ -28,8 +29,7 @@ namespace popcorn_game
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            scene.Draw(e.Graphics);
-            
+            scene.Draw(e.Graphics); 
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -40,7 +40,7 @@ namespace popcorn_game
                 help = new HelpMenuForm();
                 timer.Enabled = false;
                 inGame = true;
-                if (help.ShowDialog(this) == DialogResult.Cancel) { timer.Enabled = true; inGame = false; }
+                if (help.ShowDialog(this) == DialogResult.Cancel) { timer.Enabled = true; }
                 else { this.Hide(); }
             }
             else scene.Move(e.KeyCode);
@@ -59,7 +59,7 @@ namespace popcorn_game
         private void toolStripStatusLabel1_Paint(object sender, PaintEventArgs e)
         {
             if (scene.GameOver) toolStripStatusLabel1.Text = "GAME OVER";
-            else toolStripStatusLabel1.Text = "Points: " + scene.points.ToString();
+            else toolStripStatusLabel1.Text = "Number of bricks left: " + scene.bricks.Count.ToString();
         }
 
         private void toolStripStatusLabel2_Paint(object sender, PaintEventArgs e)
@@ -72,11 +72,30 @@ namespace popcorn_game
         {
             if(scene.GameOver)
             {
-                lblGameOver.Visible = true;
                 timer.Stop();
-                if (scene.bricks.Count == 0) lblGameOver.Text = "Congratulations " + TitleForm.text.ToString() + ", you won!\n Your score is:" + scene.points.ToString(); 
+                if (scene.bricks.Count == 0)
+                {
+                    if(level == 1)
+                    {
+                        scene.GameOver = false;
+                        level++;
+                        scene.level2();
+                        timer.Start();
+                    }
+                    if (level == 2)
+                    {
+                        //level++;
+                        //scene.level3();
+                    }
+                    else
+                    {
+                        lblGameOver.Visible = true;
+                        lblGameOver.Text = "Congratulations " + TitleForm.text.ToString() + ", you won!\n Your score is:" + scene.points.ToString();
+                    }
+                }
                 else
                 {
+                    lblGameOver.Visible = true;
                     lblGameOver.Text = "Game Over " + TitleForm.text.ToString() + ", you lost!\n Your score is: " + scene.points.ToString();
                 }
             }
