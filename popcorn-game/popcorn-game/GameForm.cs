@@ -14,6 +14,7 @@ namespace popcorn_game
     {
         Scene scene;
         HelpMenuForm help;
+        public static bool inGame = false;
         public GameForm()
         {
             InitializeComponent();
@@ -38,7 +39,8 @@ namespace popcorn_game
             {
                 help = new HelpMenuForm();
                 timer.Enabled = false;
-                if (help.ShowDialog(this) == DialogResult.Cancel) timer.Enabled = true;
+                inGame = true;
+                if (help.ShowDialog(this) == DialogResult.Cancel) { timer.Enabled = true; inGame = false; }
                 else { this.Hide(); }
             }
             else scene.Move(e.KeyCode);
@@ -50,6 +52,7 @@ namespace popcorn_game
             scene.Move();
             lblLives.Text = scene.lives.ToString();
             lblPoints.Text = scene.points.ToString();
+            GameOver();
             Invalidate(true);
         }
 
@@ -65,7 +68,19 @@ namespace popcorn_game
         }
 
         
-
+        public  void GameOver()
+        {
+            if(scene.GameOver)
+            {
+                lblGameOver.Visible = true;
+                timer.Stop();
+                if (scene.bricks.Count == 0) lblGameOver.Text = "Congratulations " + TitleForm.text.ToString() + ", you won!\n Your score is:" + scene.points.ToString(); 
+                else
+                {
+                    lblGameOver.Text = "Game Over " + TitleForm.text.ToString() + ", you lost!\n Your score is: " + scene.points.ToString();
+                }
+            }
+        }
        
     }
 }

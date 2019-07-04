@@ -81,6 +81,15 @@ namespace popcorn_game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream effect_lose {
+            get {
+                return ResourceManager.GetStream("effect_lose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream effect_paddle {
             get {
                 return ResourceManager.GetStream("effect_paddle", resourceCulture);

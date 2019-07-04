@@ -124,6 +124,9 @@
   <data name="effect_brick" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\effect_brick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="effect_lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lose.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="effect_paddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\effect_paddle.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

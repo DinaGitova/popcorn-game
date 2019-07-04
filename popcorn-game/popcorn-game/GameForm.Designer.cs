@@ -42,6 +42,7 @@
             this.lblPoints = new System.Windows.Forms.Label();
             this.lblLives = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblGameOver = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -168,12 +169,27 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "! Press ESC for help !";
             // 
+            // lblGameOver
+            // 
+            this.lblGameOver.AutoSize = true;
+            this.lblGameOver.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblGameOver.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblGameOver.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGameOver.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblGameOver.Location = new System.Drawing.Point(139, 154);
+            this.lblGameOver.Name = "lblGameOver";
+            this.lblGameOver.Size = new System.Drawing.Size(2, 21);
+            this.lblGameOver.TabIndex = 14;
+            this.lblGameOver.Visible = false;
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(752, 656);
+            this.ControlBox = false;
+            this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblLives);
             this.Controls.Add(this.lblPoints);
@@ -214,6 +230,7 @@
         private System.Windows.Forms.Label lblPoints;
         private System.Windows.Forms.Label lblLives;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblGameOver;
     }
 }
 
