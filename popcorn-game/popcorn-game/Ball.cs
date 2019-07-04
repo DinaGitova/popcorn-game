@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace popcorn_game
@@ -14,10 +15,11 @@ namespace popcorn_game
         public static int RADIUS = 4;
         public int speed_X { get; set; }
         public int speed_Y { get; set; }
+        public bool isDead { get; set; }
         public SoundPlayer paddle_sound = new SoundPlayer(Properties.Resources.effect_paddle);
         public SoundPlayer brick_sound = new SoundPlayer(Properties.Resources.effect_brick);
         public SoundPlayer border_sound = new SoundPlayer(Properties.Resources.effect_border);
-
+        public SoundPlayer lose_sound = new SoundPlayer(Properties.Resources.effect_lose);
 
         public Ball()
         {
@@ -54,6 +56,13 @@ namespace popcorn_game
             // ball hits border
             if (Center.X <= 10 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
             if (Center.Y <= 10) { speed_Y *= -1; border_sound.Play(); }
+            if (Center.Y + RADIUS >= border_height && Center.Y + RADIUS <= border_height + border_width)
+            {
+                lose_sound.Play();
+                int milliseconds = 2500;
+                Thread.Sleep(milliseconds);
+                isDead = true;
+            }
         }
         public void brickCollision(List<Brick> bricks)
         {
