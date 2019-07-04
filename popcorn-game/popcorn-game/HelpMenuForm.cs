@@ -20,8 +20,12 @@ namespace popcorn_game
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            
-            this.Hide();
+            if (GameForm.inGame)
+            {
+                btnBack.Enabled = true;
+                this.Hide();
+            }
+            else btnBack.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

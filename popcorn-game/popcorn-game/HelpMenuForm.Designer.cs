@@ -41,7 +41,7 @@
             // 
             this.btnBack.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBack.Location = new System.Drawing.Point(131, 366);
+            this.btnBack.Location = new System.Drawing.Point(131, 388);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(114, 23);
             this.btnBack.TabIndex = 1;
@@ -74,9 +74,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(117, 262);
+            this.label2.Location = new System.Drawing.Point(105, 265);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 88);
+            this.label2.Size = new System.Drawing.Size(334, 110);
             this.label2.TabIndex = 4;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -85,7 +85,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(279, 366);
+            this.button1.Location = new System.Drawing.Point(279, 388);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 23);
             this.button1.TabIndex = 5;
