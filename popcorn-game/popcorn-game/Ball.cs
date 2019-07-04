@@ -22,7 +22,14 @@ namespace popcorn_game
         public Ball()
         {
             Center = new Point(300, 520);
-            speed_X = speed_Y = 5;
+            speed_X = speed_Y = 7;
+        }
+
+        public Ball(Point Center, int speed_X, int speed_Y)
+        {
+            this.Center = Center;
+            this.speed_X = speed_X;
+            this.speed_Y = speed_Y;
         }
         public void Draw(Graphics g)
         {
@@ -37,15 +44,16 @@ namespace popcorn_game
         public void changeDirection(Point paddle, int width, int border_width, int border_height)
         {
             // ball hits paddle
-            if (Center.X > paddle.X && Center.X < paddle.X + width && paddle.Y - 10 == Center.Y)
+            if (Center.X >= paddle.X && Center.X < paddle.X + width && Center.Y >= paddle.Y - 10 && Center.Y <= paddle.Y + 10)
             {
                 paddle_sound.Play();
-                if ((Center.X < paddle.X && speed_X > 0) || (Center.X > paddle.X + Paddle.WIDTH && speed_X < 0)) speed_X *= -1;
+                if ((Center.X < paddle.X && speed_X > 0) || (Center.X > paddle.X + Paddle.WIDTH && speed_X < 0))
+                speed_X *= -1;
                 speed_Y *= -1;
             }
             // ball hits border
-            if (Center.X <= 15 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
-            if (Center.Y <= 15) { speed_Y *= -1; border_sound.Play(); }
+            if (Center.X <= 10 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
+            if (Center.Y <= 10) { speed_Y *= -1; border_sound.Play(); }
         }
         public void brickCollision(List<Brick> bricks)
         {

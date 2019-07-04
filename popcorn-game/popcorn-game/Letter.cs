@@ -18,7 +18,7 @@ namespace popcorn_game
         public Letter(Point point)
         {
             Random r = new Random();
-            letter = (char)r.Next('A', 'F');
+            letter = (char)r.Next('A', 'H');
             this.point = point;
             isHit = false;
         }

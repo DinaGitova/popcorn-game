@@ -10,18 +10,22 @@ namespace popcorn_game
 {
     public class Paddle
     {
-        public Point point;
+        public Point point { get; set; }
         public static int WIDTH = 100;
         public static int HEIGHT = 10;
+        public bool canShoot { get; set; }
+        public Color Color { get; set; }
 
         public Paddle()
         {
             point = new Point(250, 550);
+            canShoot = true;
+            Color = Color.Aquamarine;
         }
 
         public void Draw(Graphics g)
         {
-            Brush brush = new SolidBrush(Color.Aquamarine);
+            Brush brush = new SolidBrush(Color);
             g.FillRectangle(brush, point.X, point.Y, WIDTH, HEIGHT);
         }
 
@@ -37,5 +41,15 @@ namespace popcorn_game
             }
         }
 
+        public void letterCollision(List<Letter> letters)
+        {
+            foreach (Letter l in letters)
+            {
+                if (l.point.X >= point.X && l.point.X <= point.X + WIDTH && l.point.Y + Letter.HEIGHT >= point.Y && l.point.Y + Letter.HEIGHT <= point.Y + 5)
+                {
+                    l.isHit = true;
+                }
+            }
+        }
     }
 }
