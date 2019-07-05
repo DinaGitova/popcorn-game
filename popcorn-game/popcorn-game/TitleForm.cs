@@ -37,7 +37,6 @@ namespace popcorn_game
         {
               help = new HelpMenuForm();
               help.Show();
-              this.Hide();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

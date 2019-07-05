@@ -12,29 +12,25 @@ namespace popcorn_game
 {
     public partial class HelpMenuForm : Form
     {
-        TitleForm title;
         public HelpMenuForm()
         {
             InitializeComponent();
-            if (GameForm.inGame) btnBack.Enabled = true;
-            else btnBack.Enabled = false;
+            btnBack.Enabled = false;
+            FormCollection fc = Application.OpenForms;
+            foreach (Form frm in fc)
+            {
+                if (frm.Name == "GameForm") btnBack.Enabled = true;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (GameForm.inGame)
-            {
-                btnBack.Enabled = true;
-                GameForm.inGame = false;
-                this.Hide();
-            }
-            else btnBack.Enabled = false;
+          
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            title = new TitleForm();
-            title.Show();
             this.Hide();
         }
     }

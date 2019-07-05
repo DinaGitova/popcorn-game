@@ -14,7 +14,7 @@ namespace popcorn_game
     {
         Scene scene;
         HelpMenuForm help;
-        public static bool inGame = false;
+        public static bool inGame = true;
         int level = 1;
         public GameForm()
         {
@@ -88,13 +88,13 @@ namespace popcorn_game
                     else
                     {
                         lblGameOver.Visible = true;
-                        lblGameOver.Text = "Congratulations " + TitleForm.text.ToString() + ", you won!\n Your score is:" + scene.points.ToString();
+                        lblGameOver.Text = "Congratulations " + TitleForm.text.ToString() + ", you won!\nYour score is: " + scene.points.ToString() + "\nPress ESC to exit ";
                     }
                 }
                 else
                 {
                     lblGameOver.Visible = true;
-                    lblGameOver.Text = "Game Over " + TitleForm.text.ToString() + ", you lost!\n Your score is: " + scene.points.ToString();
+                    lblGameOver.Text = "Game Over " + TitleForm.text.ToString() + ", you lost!\nYour score is: " + scene.points.ToString() + "\nPress ESC to exit ";
                 }
             }
         }
