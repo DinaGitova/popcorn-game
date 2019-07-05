@@ -30,6 +30,7 @@ namespace popcorn_game
         public bool canShoot { get; set; }
         List<Bullet> bullets;
         public bool GameOver { get; set; }
+        public int pointValue { get; set; }
 
         public Scene()
         {
@@ -43,6 +44,7 @@ namespace popcorn_game
             canShoot = false;
             bullets = new List<Bullet>();
             GameOver = false;
+            pointValue = 10;
         }
         public void addBricks()
         {
@@ -60,6 +62,7 @@ namespace popcorn_game
         }
         public void level2()
         {
+            pointValue = 20;
             ball = new Ball();
             paddle = new Paddle();
             letters.Clear();
@@ -89,6 +92,36 @@ namespace popcorn_game
             }
             
         }
+
+        public void level3()
+        {
+            pointValue = 30;
+            ball = new Ball();
+            paddle = new Paddle();
+            letters.Clear();
+            bullets.Clear();
+            int milliseconds = 2000;
+            Thread.Sleep(milliseconds);
+            point = new Point(20, 60);
+            int s = 2;
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+
+                    if (j % 2 == 0) bricks.Add(new Brick(point.X + i * width, point.Y + j * height, Color.Magenta));
+                    else bricks.Add(new Brick(point.X + i * width, point.Y + j * height, Color.Aquamarine));
+                    point = new Point(point.X, point.Y + 10);
+                }
+                if (i % 2 == 0) { point = new Point(20 * (i + 2), 60 * s); }
+                else point = new Point(20 * (i + 2), 60);
+
+
+            }
+        }
+    
+
+
         public void Draw(Graphics g)
         {
             // drawing the border
@@ -168,7 +201,7 @@ namespace popcorn_game
                     counter++;
                     if (counter % 5 == 0) letters.Add(new Letter(bricks[i].point));
                     bricks.RemoveAt(i);
-                    points += 10;
+                    points += pointValue;
                 }
             }
         }

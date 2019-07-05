@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +42,8 @@
             this.lblLives = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblGameOver = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -50,8 +51,7 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 634);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(752, 22);
@@ -62,17 +62,9 @@
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(52, 17);
-            this.toolStripStatusLabel1.Text = "Points: 0";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(35, 17);
+            this.toolStripStatusLabel1.Text = "label ";
             this.toolStripStatusLabel1.Paint += new System.Windows.Forms.PaintEventHandler(this.toolStripStatusLabel1_Paint);
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(39, 17);
-            this.toolStripStatusLabel2.Text = "Lives: ";
-            this.toolStripStatusLabel2.Paint += new System.Windows.Forms.PaintEventHandler(this.toolStripStatusLabel2_Paint);
             // 
             // timer
             // 
@@ -163,7 +155,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(578, 547);
+            this.label4.Location = new System.Drawing.Point(578, 510);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(159, 11);
             this.label4.TabIndex = 12;
@@ -182,6 +174,29 @@
             this.lblGameOver.TabIndex = 14;
             this.lblGameOver.Visible = false;
             // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.BackColor = System.Drawing.Color.Violet;
+            this.lblLevel.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblLevel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblLevel.Location = new System.Drawing.Point(581, 564);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(55, 13);
+            this.lblLevel.TabIndex = 16;
+            this.lblLevel.Text = "label5";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(580, 539);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 11);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Level:";
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,6 +204,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(752, 656);
             this.ControlBox = false;
+            this.Controls.Add(this.lblLevel);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblLives);
@@ -222,7 +239,6 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -231,6 +247,8 @@
         private System.Windows.Forms.Label lblLives;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblGameOver;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.Label label6;
     }
 }
 

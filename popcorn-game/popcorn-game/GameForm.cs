@@ -52,20 +52,16 @@ namespace popcorn_game
             scene.Move();
             lblLives.Text = scene.lives.ToString();
             lblPoints.Text = scene.points.ToString();
+            lblLevel.Text = level.ToString();
             GameOver();
             Invalidate(true);
         }
 
         private void toolStripStatusLabel1_Paint(object sender, PaintEventArgs e)
         {
-            if (scene.GameOver) toolStripStatusLabel1.Text = "GAME OVER";
-            else toolStripStatusLabel1.Text = "Number of bricks left: " + scene.bricks.Count.ToString();
+            toolStripStatusLabel1.Text = "Number of bricks left: " + scene.bricks.Count.ToString();
         }
 
-        private void toolStripStatusLabel2_Paint(object sender, PaintEventArgs e)
-        {
-            toolStripStatusLabel2.Text = "Lives: " + scene.lives.ToString();
-        }
 
         
         public  void GameOver()
@@ -82,10 +78,12 @@ namespace popcorn_game
                         scene.level2();
                         timer.Start();
                     }
-                    if (level == 2)
+                    else if (level == 2)
                     {
-                        //level++;
-                        //scene.level3();
+                        scene.GameOver = false;
+                        level++;
+                        scene.level3();
+                        timer.Start();
                     }
                     else
                     {
