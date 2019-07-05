@@ -46,8 +46,9 @@ namespace popcorn_game
             GameOver = false;
             pointValue = 10;
         }
-        public void addBricks()
+        public void addBricks() 
         {
+            //Level 1 - brick formation
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -60,8 +61,9 @@ namespace popcorn_game
             }
 
         }
-        public void level2()
+        public void level2() 
         {
+            //Level 2 - brick formation
             pointValue = 20;
             ball = new Ball();
             paddle = new Paddle();
@@ -93,8 +95,9 @@ namespace popcorn_game
             
         }
 
-        public void level3()
+        public void level3() 
         {
+            //Level 3 - bricks formation
             pointValue = 30;
             ball = new Ball();
             paddle = new Paddle();
@@ -119,8 +122,6 @@ namespace popcorn_game
 
             }
         }
-    
-
 
         public void Draw(Graphics g)
         {
@@ -128,7 +129,7 @@ namespace popcorn_game
             Pen pen = new Pen(Color.Aquamarine, 5);
             g.DrawRectangle(pen, border_X, border_Y, border_width, border_height);
             pen.Dispose();
-            //
+            // ------
             foreach (Brick b in bricks)
             {
                 b.Draw(g);
@@ -176,6 +177,7 @@ namespace popcorn_game
 
         public void deadBall()
         {
+            // If the ball fell, restart and decrease lives
             if (ball.isDead)
             {
 
@@ -232,6 +234,7 @@ namespace popcorn_game
             }
         }
 
+        // Functions for each letter
         public void loseLife()
         {
             removeGifts();
@@ -283,7 +286,7 @@ namespace popcorn_game
             else if (ball.speed_Y > 0) ball.speed_Y = 5;
         }
 
-        public void removeGifts()
+        public void removeGifts() // If a different letter is collected, remove previous changes 
         {
             if (Paddle.WIDTH == 150) Paddle.WIDTH = 100;
             paddle.Color = Color.Aquamarine;
@@ -293,6 +296,6 @@ namespace popcorn_game
             if (ball.speed_Y < 0) ball.speed_Y = -7;
             else if (ball.speed_Y > 0) ball.speed_Y = 7;
         }
-
+        
     }
 }

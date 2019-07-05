@@ -14,7 +14,6 @@ namespace popcorn_game
     {
         Scene scene;
         HelpMenuForm help;
-        public static bool inGame = true;
         int level = 1;
         public GameForm()
         {
@@ -31,15 +30,14 @@ namespace popcorn_game
         {
             scene.Draw(e.Graphics); 
         }
-
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            // Checks key pressed - Space to shoot, ESC to open HelpMenu, Left/Right to move paddle
             if (e.KeyCode == Keys.Space) scene.shoot();
             else if (e.KeyCode == Keys.Escape)
             {
                 help = new HelpMenuForm();
                 timer.Enabled = false;
-                inGame = true;
                 if (help.ShowDialog(this) == DialogResult.Cancel) { timer.Enabled = true; }
                 else { this.Hide(); }
             }
@@ -49,6 +47,7 @@ namespace popcorn_game
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            //Move ball and update labels 
             scene.Move();
             lblLives.Text = scene.lives.ToString();
             lblPoints.Text = scene.points.ToString();
@@ -66,6 +65,7 @@ namespace popcorn_game
         
         public  void GameOver()
         {
+            // Loads next level if possible or prints Game over/You Won message
             if(scene.GameOver)
             {
                 timer.Stop();

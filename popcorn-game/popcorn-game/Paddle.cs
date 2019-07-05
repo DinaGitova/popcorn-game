@@ -13,13 +13,11 @@ namespace popcorn_game
         public Point point { get; set; }
         public static int WIDTH = 100;
         public static int HEIGHT = 10;
-        public bool canShoot { get; set; }
         public Color Color { get; set; }
 
         public Paddle()
         {
             point = new Point(250, 550);
-            canShoot = true;
             Color = Color.Aquamarine;
         }
 

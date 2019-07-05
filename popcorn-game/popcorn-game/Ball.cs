@@ -16,6 +16,7 @@ namespace popcorn_game
         public int speed_X { get; set; }
         public int speed_Y { get; set; }
         public bool isDead { get; set; }
+        // Sound effects
         public SoundPlayer paddle_sound = new SoundPlayer(Properties.Resources.effect_paddle);
         public SoundPlayer brick_sound = new SoundPlayer(Properties.Resources.effect_brick);
         public SoundPlayer border_sound = new SoundPlayer(Properties.Resources.effect_border);
@@ -45,7 +46,7 @@ namespace popcorn_game
         }
         public void changeDirection(Point paddle, int width, int border_width, int border_height)
         {
-            // ball hits paddle
+            // check if ball hits paddle
             if (Center.X >= paddle.X && Center.X < paddle.X + width && Center.Y >= paddle.Y - 10 && Center.Y <= paddle.Y + 10)
             {
                 paddle_sound.Play();
@@ -53,7 +54,7 @@ namespace popcorn_game
                 speed_X *= -1;
                 speed_Y *= -1;
             }
-            // ball hits border
+            // check if ball hits border
             if (Center.X <= 20 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
             if (Center.Y <= 20) { speed_Y *= -1; border_sound.Play(); }
             if (Center.Y + RADIUS >= border_height && Center.Y + RADIUS <= border_height + border_width)
@@ -66,6 +67,7 @@ namespace popcorn_game
         }
         public void brickCollision(List<Brick> bricks)
         {
+            // check if ball hits a brick
             foreach(Brick b in bricks)
             {
                 if (Center.X - RADIUS<= b.point.X + Brick.WIDTH && Center.X - RADIUS >= b.point.X && Center.Y -RADIUS <= b.point.Y + Brick.HEIGHT && Center.Y - RADIUS>= b.point.Y ||
