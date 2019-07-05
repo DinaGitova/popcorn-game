@@ -18,6 +18,7 @@ namespace popcorn_game
         public TitleForm()
         {
             InitializeComponent();
+            this.ActiveControl = playerName;
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)

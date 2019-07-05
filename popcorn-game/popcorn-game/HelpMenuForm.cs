@@ -16,6 +16,8 @@ namespace popcorn_game
         public HelpMenuForm()
         {
             InitializeComponent();
+            if (GameForm.inGame) btnBack.Enabled = true;
+            else btnBack.Enabled = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -23,6 +25,7 @@ namespace popcorn_game
             if (GameForm.inGame)
             {
                 btnBack.Enabled = true;
+                GameForm.inGame = false;
                 this.Hide();
             }
             else btnBack.Enabled = false;
