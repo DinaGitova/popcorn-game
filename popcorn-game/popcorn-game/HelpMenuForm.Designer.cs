@@ -76,7 +76,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(105, 247);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 143);
+            this.label2.Size = new System.Drawing.Size(327, 165);
             this.label2.TabIndex = 4;
             this.label2.Text = resources.GetString("label2.Text");
             // 
