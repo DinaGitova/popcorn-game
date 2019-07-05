@@ -54,8 +54,8 @@ namespace popcorn_game
                 speed_Y *= -1;
             }
             // ball hits border
-            if (Center.X <= 10 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
-            if (Center.Y <= 10) { speed_Y *= -1; border_sound.Play(); }
+            if (Center.X <= 20 || Center.X + RADIUS >= border_width) { speed_X *= -1; border_sound.Play(); }
+            if (Center.Y <= 20) { speed_Y *= -1; border_sound.Play(); }
             if (Center.Y + RADIUS >= border_height && Center.Y + RADIUS <= border_height + border_width)
             {
                 lose_sound.Play();
