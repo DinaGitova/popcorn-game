@@ -68,7 +68,8 @@ namespace popcorn_game
         {
             foreach(Brick b in bricks)
             {
-                if (Center.X <= b.point.X + Brick.WIDTH && Center.X >= b.point.X && Center.Y <= b.point.Y + Brick.HEIGHT && Center.Y >= b.point.Y)
+                if (Center.X - RADIUS<= b.point.X + Brick.WIDTH && Center.X - RADIUS >= b.point.X && Center.Y -RADIUS <= b.point.Y + Brick.HEIGHT && Center.Y - RADIUS>= b.point.Y ||
+                    (Center.X + RADIUS >= b.point.X && Center.X + RADIUS <= b.point.X + Brick.WIDTH && Center.Y + RADIUS >= b.point.Y && Center.Y + RADIUS <= b.point.Y +Brick.HEIGHT))
                 {
                     brick_sound.Play();
                     b.isDead = true;
